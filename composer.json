@@ -1,0 +1,36 @@
+{
+    "name": "cher4geo35/sliders",
+    "description": "Adding editable sliders to the site",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "K.Sokolov",
+            "email": "kvsokolov2011@mail.ru"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Cher4geo35\\Sliders\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^8.0.2",
+        "laravel/framework": "^9.0",
+        "portedcheese/base-settings": "^4.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^7.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Cher4geo35\\Sliders\\SlidersServiceProvider"
+            ],
+            "aliases": {
+                "Sliders": "Cher4geo35\\Sliders\\Facade"
+            }
+        }
+    }
+}
