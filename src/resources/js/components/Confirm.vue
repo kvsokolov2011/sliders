@@ -2,8 +2,6 @@
     <div>
         <div class="bg-transparent mask" v-if="confirm_delete"></div>
         <transition name="fade">
-            <div class="col-12 mb-2 p-3 h4 message d-flex justify-content-center align-items-center" style="background-color: #2dc26b" v-if="success_message">{{ success_message }}</div>
-            <div class="col-12 mb-2 p-3 h4 message d-flex justify-content-center align-items-center" style="background-color: #ff0000" v-if="error_message">{{ error_message }}</div>
             <div class="col-12 mb-2 p-3 h4 message d-flex flex-column justify-content-center align-items-center" style="background-color: #fff" v-if="confirm_delete">
                 <div class="h4 mb-3">Действительно удалить слайдер?</div>
                 <div>
@@ -11,13 +9,7 @@
                     <div class="btn btn-outline-success"  v-on:click="hide();">Отмена</div>
                 </div>
             </div>
-            <div class="col-12 mb-2 p-3 h4 message d-flex flex-column justify-content-center align-items-center" style="background-color: #fff" v-if="confirm_del_slide">
-                <div class="h4 mb-3">Действительно удалить слайд?</div>
-                <div>
-                    <div class="btn btn-danger mr-3" v-on:click="del_slide();">Удалить</div>
-                    <div class="btn btn-outline-success"  v-on:click="hide();">Отмена</div>
-                </div>
-            </div>
+
         </transition>
     </div>
 </template>

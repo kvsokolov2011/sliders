@@ -5,22 +5,71 @@
 
 @section('admin')
     @can("viewAny", \App\Sliders::class)
+        @include("sliders::admin.sliders.includes.pills")
+
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-
-{{--                    <sliders url_storage_slider="{{ route('admin.sliders.storage-slider') }}"--}}
-{{--                             url_update_slider="{{ route('admin.sliders.update-slider') }}"--}}
-{{--                             url_get_sliders="{{ route('admin.sliders.get-sliders') }}"--}}
-{{--                             url_delete_slider="{{ route('admin.sliders.delete-slider') }}"--}}
-{{--                             url_get_slides="{{ route('admin.sliders.get-slides') }}"--}}
-{{--                             url_storage_slide="{{ route('admin.sliders.storage-slide') }}"--}}
-{{--                             url_update_slide="{{ route('admin.sliders.update-slide') }}"--}}
-{{--                             url_delete_slide="{{ route('admin.sliders.delete-slide') }}"--}}
-{{--                    >--}}
-{{--                    </sliders>--}}
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Заголовок</th>
+                                <th>Slug</th>
+                                <th>Описание</th>
+                                <th>Действия</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @if($sliders && count($sliders))
+                                @foreach($sliders as $slider)
+                                        <td>{{ $slider->id }}</td>
+                                        <td>{{ $slider->title }}</td>
+                                        <td>{{ $slider->slug }}</td>
+                                        <td>{{ $slider->description }}</td>
+                                        <td>
+                                            <div role="toolbar" class="btn-toolbar">
+                                                <div class="btn-group mr-1">
+                                                    @can("update", \App\Slider::class)
+                                                        <a href="{{ route("admin.sliders.edit", ["slider" => $slider]) }}" class="btn btn-primary">
+                                                            <i class="far fa-edit"></i>
+                                                        </a>
+                                                    @endcan
+{{--                                                    @canany(["view", "create", "update", "publish"], \App\Slider::class)--}}
+{{--                                                        <a href="{{ route('admin.slides.show', ['slide' => $slider]) }}" class="btn btn-dark">--}}
+{{--                                                            <i class="far fa-eye"></i>--}}
+{{--                                                        </a>--}}
+{{--                                                    @endcanany--}}
+                                                    @can("delete", \App\Slider::class)
+                                                        <button type="button" class="btn btn-danger" data-confirm="{{ "delete-form-{$slider->id}" }}">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </button>
+                                                    @endcan
+                                                </div>
+                                            </div>
+                                            <confirm-form :id="'{{ "delete-form-{$slider->id}" }}'">
+                                                <template>
+                                                    <form action="{{ route('admin.sliders.destroy', ['slider' => $slider]) }}"
+                                                          id="delete-form-{{ $slider->id }}"
+                                                          class="btn-group"
+                                                          method="post">
+                                                        @csrf
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                    </form>
+                                                </template>
+                                            </confirm-form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
+
+
     @endcan
 @endsection

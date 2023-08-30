@@ -47,7 +47,7 @@ class SlidersMakeCommand extends BaseConfigModelCommand
         'admin' => [
             'sliders' => "Sliders",
             'slides' => "Slides",
-            'message' => "Message",
+            'confirm' => "Confirm",
             'add-slider' => "AddSlider",
         ],
     ];
