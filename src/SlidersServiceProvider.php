@@ -2,7 +2,7 @@
 
 namespace Cher4geo35\Sliders;
 
-use Cher4geo35\ParseNews\Console\Commands\ParseNewsMakeCommand;
+use Cher4geo35\Sliders\Console\Commands\SlidersMakeCommand;
 use Illuminate\Support\ServiceProvider;
 
 class SlidersServiceProvider extends ServiceProvider
@@ -28,6 +28,7 @@ class SlidersServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/resources/js/components' => resource_path('js/components/vendor/sliders'),
         ], 'public');
+
     }
 
     public function register()

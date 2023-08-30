@@ -1,0 +1,146 @@
+<?php
+
+namespace Cher4geo35\Sliders\Console\Commands;
+
+use App\Menu;
+use App\MenuItem;
+use PortedCheese\BaseSettings\Console\Commands\BaseConfigModelCommand;
+
+class SlidersMakeCommand extends BaseConfigModelCommand
+{
+//    protected $scssIncludes = [
+//        "app" => ["sliders"],
+//    ];
+
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'make:sliders
+                    {--all : Run all}
+                    {--menu : Config menu}
+                    {--models : Export models}
+                    {--policies : Export and create rules}
+                    {--config : Make config}
+                    {--controllers : Export controllers}
+                    {--vue : Export vue files}';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Command description';
+    protected $vendorName = 'Cher4geo35';
+    protected $packageName = "Sliders";
+
+    protected $models = ['Sliders', 'Slides'];
+
+    protected $controllers = [
+        "Admin" => ["SlidersController"]
+    ];
+
+    protected $vueFolder = "sliders";
+
+    protected $vueIncludes = [
+        'admin' => [
+            'sliders' => "Sliders",
+            'slides' => "Slides",
+            'message' => "Message",
+            'add-slider' => "AddSlider",
+        ],
+    ];
+
+    protected $configName = "sliders";
+    protected $configTitle = "Слайдеры";
+    protected $configTemplate = "sliders::admin.settings";
+    protected $configValues = [
+        'pager' => 20,
+        'path' => 'sliders',
+    ];
+
+    protected $ruleRules = [
+        [
+            "title" => "Слайдеры",
+            "slug" => "sliders",
+            "policy" => "SlidersPolicy",
+        ],
+    ];
+
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    /**
+     * Execute the console command.
+     */
+    public function handle()
+    {
+        $all = $this->option("all");
+
+        if ($this->option("menu") || $all) {
+            $this->makeMenu();
+        }
+
+        if ($this->option("vue") || $all) {
+            $this->makeVueIncludes('admin');
+        }
+
+        if ($this->option("models") || $all) {
+            $this->exportModels();
+        }
+
+        if ($this->option("controllers") || $all) {
+            $this->exportControllers("Admin");
+        }
+
+        if ($this->option("config") || $all) {
+            $this->makeConfig();
+        }
+
+        if ($this->option("policies") || $all) {
+            $this->makeRules();
+        }
+    }
+
+    protected function makeMenu()
+    {
+        try {
+            $menu = Menu::query()
+                ->where('key', 'admin')
+                ->firstOrFail();
+        }
+        catch (\Exception $e) {
+            return;
+        }
+
+        $title = "Слайдеры";
+        $itemData = [
+            'title' => $title,
+            'template' => "sliders::admin.sliders.menu",
+            'url' => "#",
+            'ico' => 'fab fa-slideshare',
+            'menu_id' => $menu->id,
+        ];
+
+        try {
+            $menuItem = MenuItem::query()
+                ->where("menu_id", $menu->id)
+                ->where('title', $title)
+                ->firstOrFail();
+            $menuItem->update($itemData);
+            $this->info("Элемент меню '$title' обновлен");
+        }
+        catch (\Exception $e) {
+            MenuItem::create($itemData);
+            $this->info("Элемент меню '$title' создан");
+        }
+    }
+}
