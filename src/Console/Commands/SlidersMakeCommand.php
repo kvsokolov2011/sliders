@@ -8,10 +8,6 @@ use PortedCheese\BaseSettings\Console\Commands\BaseConfigModelCommand;
 
 class SlidersMakeCommand extends BaseConfigModelCommand
 {
-//    protected $scssIncludes = [
-//        "app" => ["sliders"],
-//    ];
-
     /**
      * The name and signature of the console command.
      *
@@ -38,7 +34,7 @@ class SlidersMakeCommand extends BaseConfigModelCommand
     protected $models = ['Sliders', 'Slides'];
 
     protected $controllers = [
-        "Admin" => ["SlidersController"]
+        "Admin" => ["SlidersController", "SlidesController"]
     ];
 
     protected $vueFolder = "sliders";

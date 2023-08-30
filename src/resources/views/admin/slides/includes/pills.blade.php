@@ -3,20 +3,29 @@
         <div class="card-body">
             <ul class="nav nav-pills">
 
-                @can("view", \App\Slider::class)
+                @can("view", \App\Slide::class)
                     <li class="nav-item">
-                        <a href="{{ route("admin.sliders.index") }}"
-                        class="nav-link{{ $currentRoute === "admin.sliders.index" ? " active" : "" }}">
-                            Список
+                        <a href="{{ route("admin.slides.index") }}"
+                        class="nav-link{{ $currentRoute === "admin.slides.index" ? " active" : "" }}">
+                            Список слайдов
                         </a>
                     </li>
                 @endcan
 
-                @can("update", \App\Slider::class)
+                @can("update", \App\Slide::class)
                     <li class="nav-item">
-                        <a href="{{ route("admin.sliders.create") }}"
-                        class="nav-link{{ $currentRoute === "admin.sliders.create" ? " active" : "" }}">
-                            Добавить слайдер
+                        <a href="{{ route("admin.slides.priority") }}"
+                           class="nav-link{{ $currentRoute === "admin.slides.priority" ? " active" : "" }}">
+                            Приоритет
+                        </a>
+                    </li>
+                @endcan
+
+                @can("update", \App\Slide::class)
+                    <li class="nav-item">
+                        <a href="{{ route("admin.slides.create") }}"
+                        class="nav-link{{ $currentRoute === "admin.slides.create, " ? " active" : "" }}">
+                            Добавить слайд
                         </a>
                     </li>
                 @endcan

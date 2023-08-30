@@ -29,6 +29,10 @@ class SlidersServiceProvider extends ServiceProvider
             __DIR__ . '/resources/js/components' => resource_path('js/components/vendor/sliders'),
         ], 'public');
 
+        $imagecache = app()->config['imagecache.paths'];
+        $imagecache[] = 'storage/slides';
+        app()->config['imagecache.paths'] = $imagecache;
+
     }
 
     public function register()

@@ -36,11 +36,16 @@
                                                             <i class="far fa-edit"></i>
                                                         </a>
                                                     @endcan
-{{--                                                    @canany(["view", "create", "update", "publish"], \App\Slider::class)--}}
-{{--                                                        <a href="{{ route('admin.slides.show', ['slide' => $slider]) }}" class="btn btn-dark">--}}
-{{--                                                            <i class="far fa-eye"></i>--}}
-{{--                                                        </a>--}}
-{{--                                                    @endcanany--}}
+                                                    @canany(["view", "create", "update", "publish"], \App\Slider::class)
+                                                        <form action="{{ route("admin.slides.index") }}" method="get" enctype="multipart/form-data">
+                                                            @csrf
+                                                            <input hidden name="slug" value="{{ $slider->slug }}">
+                                                            <div class="btn-group"
+                                                                 role="group">
+                                                                <button type="submit" class="btn btn-dark"><i class="far fa-eye"></i></button>
+                                                            </div>
+                                                        </form>
+                                                    @endcanany
                                                     @can("delete", \App\Slider::class)
                                                         <button type="button" class="btn btn-danger" data-confirm="{{ "delete-form-{$slider->id}" }}">
                                                             <i class="fas fa-trash-alt"></i>
