@@ -113,6 +113,7 @@ class SlidesController extends Controller
     {
         $this->updateValidator($request->all(), $slide);
         $slide->update($request->all());
+        $slide->uploadImage($request, "slides");
         return redirect()
             ->route("admin.slides.index", ["slide" => $slide])
             ->with("success", "Слайд изменен");

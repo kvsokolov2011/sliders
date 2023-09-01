@@ -20,7 +20,8 @@ class SlidersMakeCommand extends BaseConfigModelCommand
                     {--policies : Export and create rules}
                     {--config : Make config}
                     {--controllers : Export controllers}
-                    {--vue : Export vue files}';
+                    {--scss : Export scss files}
+                    {--js : Export scripts}';
 
     /**
      * The console command description.
@@ -37,16 +38,30 @@ class SlidersMakeCommand extends BaseConfigModelCommand
         "Admin" => ["SlidersController", "SlidesController"]
     ];
 
-    protected $vueFolder = "sliders";
+//    protected $vueFolder = "sliders";
 
-    protected $vueIncludes = [
-        'admin' => [
-            'sliders' => "Sliders",
-            'slides' => "Slides",
-            'confirm' => "Confirm",
-            'add-slider' => "AddSlider",
+//    protected $vueIncludes = [
+//        'admin' => [
+//            'sliders' => "Sliders",
+//            'slides' => "Slides",
+//            'confirm' => "Confirm",
+//            'add-slider' => "AddSlider",
+//        ],
+//    ];
+
+    protected $scssIncludes = [
+        "app" => [
+            "slider-certificates",
+            "slider-images",
+            "settings-slick-carousel",]
+    ];
+
+    protected $jsIncludes = [
+        "app" => [
+            "sliders/sliders",
         ],
     ];
+
 
     protected $configName = "sliders";
     protected $configTitle = "Слайдеры";
@@ -85,8 +100,12 @@ class SlidersMakeCommand extends BaseConfigModelCommand
             $this->makeMenu();
         }
 
-        if ($this->option("vue") || $all) {
-            $this->makeVueIncludes('admin');
+//        if ($this->option("vue") || $all) {
+//            $this->makeVueIncludes('admin');
+//        }
+
+        if ($this->option("js") || $all) {
+            $this->makeJsIncludes("app");
         }
 
         if ($this->option("models") || $all) {
@@ -103,6 +122,10 @@ class SlidersMakeCommand extends BaseConfigModelCommand
 
         if ($this->option("policies") || $all) {
             $this->makeRules();
+        }
+
+        if ($this->option("scss") || $all) {
+            $this->makeScssIncludes("app");
         }
     }
 

@@ -14,7 +14,19 @@
                              {--policies : Export and create rules}
                              {--config : Make config}
                              {--controllers : Export controllers}
-                             {--vue : Export vue files}
+                             {--scss : Export scss files}
+                             {--js : Export scripts}
+        
+    npm install "slick-carousel": "^1.8.1",
+
+    Добавить в webpack.min.js:
+    .copy('node_modules/slick-carousel/slick/fonts', 'public/slick-carousel/fonts')
+    .copy('node_modules/slick-carousel/slick/ajax-loader.gif', 'public/slick-carousel')
+
+### Слайдеры
+ - slider-cetrificates (Передаем в него $slider)
+   @include('sliders::site.sliders.slider-certificates', [ 'slider' => $slider ])
+
 
 
 ### Components

@@ -2,6 +2,7 @@
 
 namespace Cher4geo35\Sliders;
 
+use Cher4geo35\Sliders\Filters\CertificatesSlider;
 use Cher4geo35\Sliders\Console\Commands\SlidersMakeCommand;
 use Illuminate\Support\ServiceProvider;
 
@@ -17,6 +18,7 @@ class SlidersServiceProvider extends ServiceProvider
 
         // Подгрузка роутов.
         $this->loadRoutesFrom(__DIR__ . '/routes/admin.php');
+        $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
 
         // Console.
         if ($this->app->runningInConsole()) {
@@ -26,12 +28,17 @@ class SlidersServiceProvider extends ServiceProvider
         }
 
         $this->publishes([
-            __DIR__ . '/resources/js/components' => resource_path('js/components/vendor/sliders'),
+            __DIR__ . '/resources/js/scripts' => resource_path('js/vendor/sliders'),
+            __DIR__ . '/resources/sass' => resource_path('sass/vendor'),
         ], 'public');
 
         $imagecache = app()->config['imagecache.paths'];
         $imagecache[] = 'storage/slides';
         app()->config['imagecache.paths'] = $imagecache;
+
+        $imagecache = app()->config['imagecache.templates'];
+        $imagecache['certificates-slider'] = CertificatesSlider::class;
+        app()->config['imagecache.templates'] = $imagecache;
 
     }
 
