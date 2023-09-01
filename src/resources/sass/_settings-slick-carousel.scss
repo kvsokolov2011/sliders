@@ -3,13 +3,14 @@ $slick-font-path: "../slick-carousel/fonts/";
 @import "~slick-carousel/slick/slick.scss";
 @import "~slick-carousel/slick/slick-theme.scss";
 
-@mixin controls-edges() {
+@mixin controls-edges($diameter, $top, $left_prev, $right_prev, $right_next, $arrow_left, $arrow_right) {
     & .slick-prev, .slick-next{
-        height: 2.5rem;
-        width: 2.5rem;
+        height: $diameter;
+        width: $diameter;
         border-radius: 50%;
         background-color: rgba(255, 255, 255, 0.8);
         z-index: 100;
+        top: $top;
 
         &:before{
             font-size: 2rem;
@@ -17,17 +18,18 @@ $slick-font-path: "../slick-carousel/fonts/";
         }
     }
     & .slick-prev{
-        left: -2rem;
+        left: $left_prev;
+        right: $right_prev;
         &::before {
-            content: '\f053';
+            content: $arrow_right;
             font-family: 'Font Awesome 5 Free';
             font-weight: 900;
         }
     }
     & .slick-next{
-        right: -2rem;
+        right: $right_next;
         &::before {
-            content: '\f054';
+            content: $arrow_left;
             font-family: 'Font Awesome 5 Free';
             font-weight: 900;
         }

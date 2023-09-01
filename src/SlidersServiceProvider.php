@@ -8,6 +8,11 @@ use Cher4geo35\Sliders\Filters\ImageSm;
 use Cher4geo35\Sliders\Filters\ImageMd;
 use Cher4geo35\Sliders\Filters\ImageLg;
 use Cher4geo35\Sliders\Filters\ImageXl;
+use Cher4geo35\Sliders\Filters\BasicXs;
+use Cher4geo35\Sliders\Filters\BasicSm;
+use Cher4geo35\Sliders\Filters\BasicMd;
+use Cher4geo35\Sliders\Filters\BasicLg;
+use Cher4geo35\Sliders\Filters\BasicXl;
 use Cher4geo35\Sliders\Console\Commands\SlidersMakeCommand;
 use Illuminate\Support\ServiceProvider;
 
@@ -49,6 +54,12 @@ class SlidersServiceProvider extends ServiceProvider
         $imagecache['image-md'] = ImageMd::class;
         $imagecache['image-lg'] = ImageLg::class;
         $imagecache['image-xl'] = ImageXl::class;
+
+        $imagecache['basic-xs'] = BasicXs::class;
+        $imagecache['basic-sm'] = BasicSm::class;
+        $imagecache['basic-md'] = BasicMd::class;
+        $imagecache['basic-lg'] = BasicLg::class;
+        $imagecache['basic-xl'] = BasicXl::class;
 
         app()->config['imagecache.templates'] = $imagecache;
 

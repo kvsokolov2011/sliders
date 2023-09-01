@@ -1,0 +1,34 @@
+.slider-basic{
+
+    &__slide{
+        border: none!important;
+        border-radius: 0;
+        @media (min-width: 1920px) {
+            height: 34.375rem;
+        }
+    }
+
+    &__content{
+        padding: 8.75rem 0;
+        background-color: rgba($black, 0.5);
+        color: $body-bg;
+        border-radius: 0;
+
+        & a{
+            color: $body-bg;
+
+            &:hover{
+                color: $grid-line;
+            }
+        }
+    }
+
+    &__image{
+        @media (min-width: 1920px) {
+            width: 100%;
+            object-fit: contain;
+        }
+    }
+
+    @include controls-edges( 3rem, 90%, unset, 5rem, 1rem, '\f30b', '\f30a');
+}

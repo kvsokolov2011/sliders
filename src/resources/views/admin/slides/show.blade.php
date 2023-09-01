@@ -12,47 +12,52 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                        @img([
-                        "image" => $slide->image,
-                        "template" => "medium",
-                        "lightbox" => "lightGroupExample",
-                        "imgClass" => "img-fluid",
-                        "grid" => [],
-                        ])
-                        <div class="d-flex flex-column">
-                            @if ($slide->description)
-                                <div class="mt-0">Начало показа слайда: {{ $slide->published_at }}</div>
-                            @endif
-                            @if ($slide->description)
-                                <div class="mt-0">Конец показа слайда:  {{ $slide->unpublished_at }}</div>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-8">
-                        @if ($slide->title)
-                            <h4 class="mt-0">Краткое описание</h4>
-                            <div>
-                                {{ $slide->title }}
-                            </div>
-                        @endif
-                        @if ($slide->short)
-                            <h4 class="mt-0">Краткое описание</h4>
-                            <div>
-                                {{ $slide->short }}
-                            </div>
-                        @endif
-                        @if ($slide->description)
-                            <h4 class="mt-0">Описание</h4>
-                            <div>
-                                {!! $slide->description !!}
-                            </div>
-                        @endif
-
-
-                    </div>
-                </div>
+                <table>
+                    <thead>
+                    <tr>
+                        <th class="p-2 border border-dark">Элемент</th>
+                        <th class="p-2 border border-dark">Контент</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="p-2 border border-dark">Фоновая картинка</td>
+                        <td class="p-2 border border-dark">
+                            @img([
+                            "image" => $slide->image,
+                            "template" => "medium",
+                            "lightbox" => "lightGroupExample",
+                            "imgClass" => "img-fluid",
+                            "grid" => [],
+                            ])
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 border border-dark">Название слайда</td>
+                        <td class="p-2 border border-dark">{{ $slide->title }}</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 border border-dark">Заголовок слайда</td>
+                        <td class="p-2 border border-dark">{{ $slide->short }}</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 border border-dark">Начало показа слайда</td>
+                        <td class="p-2 border border-dark">{{ $slide->published_at }}</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 border border-dark">Конец показа слайда</td>
+                        <td class="p-2 border border-dark">{{ $slide->unpublished_at }}</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 border border-dark">Ссылка со слайда</td>
+                        <td class="p-2 border border-dark">{{ $slide->url }}</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 border border-dark">Описание</td>
+                        <td class="p-2 border border-dark">{!! $slide->description !!}</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

@@ -52,7 +52,7 @@ class SlidesController extends Controller
             'description' => $request->description,
             'published_at' => $request->published_at,
             'unpublished_at' => $request->unpublished_at,
-            'url' => $request->url,
+            'url' => preg_match('/<\/a>/', $request->description )?null:$request->url,
             'short' => $request->short,
         ]);
         $slide->uploadImage($request, "slides");
@@ -112,6 +112,7 @@ class SlidesController extends Controller
     public function update(Request $request, Slide $slide)
     {
         $this->updateValidator($request->all(), $slide);
+        $request->replace(['url' => preg_match('/<\/a>/', $request->description )?null:$request->url]);
         $slide->update($request->all());
         $slide->uploadImage($request, "slides");
         return redirect()

@@ -26,6 +26,10 @@
 ### Слайдеры
  - slider-cetrificates (Передаем в него $slider)
    @include('sliders::site.sliders.slider-certificates', [ 'slider' => $slider ])
+ - slider-images (Передаем в него $slider)
+   @include('sliders::site.sliders.slider-images', [ 'slider' => $slider ])
+- slider-basic (Передаем в него $slider)
+  @include('sliders::site.sliders.slider-basic', [ 'slider' => $slider ])
 
 
 

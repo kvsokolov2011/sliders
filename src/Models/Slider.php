@@ -41,16 +41,16 @@ class Slider extends Model
         return $collection;
     }
 
-    static function deleteSlider($slug){
-        try{
-            $slider = Slider::query()->where('slug', $slug)->firstOrFail();
-            foreach ($slider->slides as $slide){
-                $slide->delete();
-            }
-            $slider->delete();
-            return true;
-        }catch ( Exception $e){
-            return false;
-        }
-    }
+//    static function deleteSlider($slug){
+//        try{
+//            $slider = Slider::query()->where('slug', $slug)->firstOrFail();
+//            foreach ($slider->slides as $slide){
+//                $slide->delete();
+//            }
+//            $slider->delete();
+//            return true;
+//        }catch ( Exception $e){
+//            return false;
+//        }
+//    }
 }

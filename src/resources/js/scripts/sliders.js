@@ -82,6 +82,8 @@ require('slick-carousel');
             ]
         });
 
+        $('.slider-basic').slick({
+        });
     });
 })(jQuery);
 

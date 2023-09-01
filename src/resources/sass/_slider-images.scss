@@ -16,7 +16,7 @@
         height: 100%;
     }
 
-    @include controls-edges();
+    @include controls-edges(2.5rem, 50%, -2rem, unset, -2rem, '\f054', '\f053');
 }
 
 

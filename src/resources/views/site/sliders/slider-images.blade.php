@@ -1,5 +1,5 @@
-@if($slider->slides && count($slider->slides))
-    <div class="slider-images {{ $slider->slug }} mx-0 mx-md-5">
+@if($slider->get_slides() && count($slider->get_slides()))
+    <div class="slider-images mx-0 mx-md-5">
         @foreach($slider->get_slides() as $slide)
             <div class="px-2 bg-transparent">
                 <div class="overflow-hidden d-flex justify-content-center align-items-center">

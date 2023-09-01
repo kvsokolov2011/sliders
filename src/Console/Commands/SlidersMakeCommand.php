@@ -38,22 +38,12 @@ class SlidersMakeCommand extends BaseConfigModelCommand
         "Admin" => ["SlidersController", "SlidesController"]
     ];
 
-//    protected $vueFolder = "sliders";
-
-//    protected $vueIncludes = [
-//        'admin' => [
-//            'sliders' => "Sliders",
-//            'slides' => "Slides",
-//            'confirm' => "Confirm",
-//            'add-slider' => "AddSlider",
-//        ],
-//    ];
-
     protected $scssIncludes = [
         "app" => [
             "settings-slick-carousel",
             "slider-certificates",
-            "slider-images", ]
+            "slider-images",
+            "slider-basic",]
     ];
 
     protected $jsIncludes = [

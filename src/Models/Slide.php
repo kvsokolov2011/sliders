@@ -32,13 +32,13 @@ class Slide extends Model
         return $this->belongsTo(Image::class);
     }
 
-    static function deleteSlide($slug){
-        try{
-            $slide = Slide::query()->where('slug', $slug)->firstOrFail();
-            $slide->delete();
-            return true;
-        }catch ( Exception $e){
-            return false;
-        }
-    }
+//    static function deleteSlide($slug){
+//        try{
+//            $slide = Slide::query()->where('slug', $slug)->firstOrFail();
+//            $slide->delete();
+//            return true;
+//        }catch ( Exception $e){
+//            return false;
+//        }
+//    }
 }
