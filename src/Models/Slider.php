@@ -28,14 +28,13 @@ class Slider extends Model
     public function get_slides()
     {
         $collection = Slide::query()
-            ->with(["image"])->where('slider_id', $this->id )
             ->where(function($query) {
                 $query->where("unpublished_at", ">", now())
-                    ->where("published_at", "<", now());
+                    ->where("published_at", "<", now())->where('slider_id', $this->id );
             })
             ->orWhere(function($query) {
                 $query->where("unpublished_at", NULL)
-                    ->where("published_at", "<", now());
+                    ->where("published_at", "<", now())->where('slider_id', $this->id );
             })
             ->orderBy("priority")
             ->get();

@@ -1,0 +1,22 @@
+.slider-images{
+    &__slide{
+        object-fit: contain;
+        height: 18.75rem;
+        @include media-breakpoint-up(lg){
+            height: 12.5rem;
+        }
+    }
+
+    & .slick-slide img{
+        width: auto;
+    }
+
+    & .figure{
+        margin-bottom: 0;
+        height: 100%;
+    }
+
+    @include controls-edges();
+}
+
+

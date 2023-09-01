@@ -51,9 +51,9 @@ class SlidersMakeCommand extends BaseConfigModelCommand
 
     protected $scssIncludes = [
         "app" => [
+            "settings-slick-carousel",
             "slider-certificates",
-            "slider-images",
-            "settings-slick-carousel",]
+            "slider-images", ]
     ];
 
     protected $jsIncludes = [

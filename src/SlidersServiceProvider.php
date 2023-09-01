@@ -3,6 +3,11 @@
 namespace Cher4geo35\Sliders;
 
 use Cher4geo35\Sliders\Filters\CertificatesSlider;
+use Cher4geo35\Sliders\Filters\ImageXs;
+use Cher4geo35\Sliders\Filters\ImageSm;
+use Cher4geo35\Sliders\Filters\ImageMd;
+use Cher4geo35\Sliders\Filters\ImageLg;
+use Cher4geo35\Sliders\Filters\ImageXl;
 use Cher4geo35\Sliders\Console\Commands\SlidersMakeCommand;
 use Illuminate\Support\ServiceProvider;
 
@@ -38,6 +43,13 @@ class SlidersServiceProvider extends ServiceProvider
 
         $imagecache = app()->config['imagecache.templates'];
         $imagecache['certificates-slider'] = CertificatesSlider::class;
+
+        $imagecache['image-xs'] = ImageXs::class;
+        $imagecache['image-sm'] = ImageSm::class;
+        $imagecache['image-md'] = ImageMd::class;
+        $imagecache['image-lg'] = ImageLg::class;
+        $imagecache['image-xl'] = ImageXl::class;
+
         app()->config['imagecache.templates'] = $imagecache;
 
     }
