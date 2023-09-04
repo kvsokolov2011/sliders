@@ -84,6 +84,42 @@ require('slick-carousel');
 
         $('.slider-basic').slick({
         });
+
+        $('.slider-reviews').slick({
+            centerMode: true,
+            centerPadding: '60px',
+            slidesToShow: 3,
+            responsive: [
+                {
+                    breakpoint: 1500,
+                    settings: {
+                        arrows: true,
+                        centerMode: true,
+                        centerPadding: '200px',
+                        slidesToShow: 1
+                    }
+                },
+                {
+                    breakpoint: 992,
+                    settings: {
+                        arrows: true,
+                        centerMode: true,
+                        centerPadding: '60px',
+                        slidesToShow: 1
+                    }
+                },
+                {
+                    breakpoint: 576,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '10px',
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        });
+
     });
 })(jQuery);
 

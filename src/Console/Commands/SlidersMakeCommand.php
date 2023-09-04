@@ -21,7 +21,8 @@ class SlidersMakeCommand extends BaseConfigModelCommand
                     {--config : Make config}
                     {--controllers : Export controllers}
                     {--scss : Export scss files}
-                    {--js : Export scripts}';
+                    {--js : Export scripts}
+                    {--vue : Export vue files}';
 
     /**
      * The console command description.
@@ -35,7 +36,8 @@ class SlidersMakeCommand extends BaseConfigModelCommand
     protected $models = ['Sliders', 'Slides'];
 
     protected $controllers = [
-        "Admin" => ["SlidersController", "SlidesController"]
+        "Admin" => ["SlidersController", "SlidesController"],
+        'Site' => ['SlidersController'],
     ];
 
     protected $scssIncludes = [
@@ -43,8 +45,16 @@ class SlidersMakeCommand extends BaseConfigModelCommand
             "settings-slick-carousel",
             "slider-certificates",
             "slider-images",
-            "slider-basic",]
+            "slider-basic",
+            "slider-reviews",]
     ];
+
+    protected $vueFolder = "sliders";
+    protected $vueIncludes = [
+                'app' => [
+                        'add-review' => "AddReview",
+                    ],
+            ];
 
     protected $jsIncludes = [
         "app" => [
@@ -90,9 +100,9 @@ class SlidersMakeCommand extends BaseConfigModelCommand
             $this->makeMenu();
         }
 
-//        if ($this->option("vue") || $all) {
-//            $this->makeVueIncludes('admin');
-//        }
+        if ($this->option("vue") || $all) {
+            $this->makeVueIncludes('app');
+        }
 
         if ($this->option("js") || $all) {
             $this->makeJsIncludes("app");
@@ -104,6 +114,7 @@ class SlidersMakeCommand extends BaseConfigModelCommand
 
         if ($this->option("controllers") || $all) {
             $this->exportControllers("Admin");
+            $this->exportControllers("Site");
         }
 
         if ($this->option("config") || $all) {

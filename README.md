@@ -16,6 +16,7 @@
                              {--controllers : Export controllers}
                              {--scss : Export scss files}
                              {--js : Export scripts}
+                             {--vue : Export vue}
         
     npm install "slick-carousel": "^1.8.1",
 

@@ -41,6 +41,8 @@ class Slider extends Model
         return $collection;
     }
 
+
+
 //    static function deleteSlider($slug){
 //        try{
 //            $slider = Slider::query()->where('slug', $slug)->firstOrFail();
