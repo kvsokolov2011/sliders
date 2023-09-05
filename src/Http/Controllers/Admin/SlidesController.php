@@ -3,11 +3,8 @@
 namespace Cher4geo35\Sliders\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Image;
-use App\Slides;
 use Cher4geo35\Sliders\Models\Slide;
 use Cher4geo35\Sliders\Models\Slider;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -17,7 +14,7 @@ class SlidesController extends Controller
     public function __construct()
     {
         parent::__construct();
-        $this->authorizeResource(Slides::class, "slides");
+        $this->authorizeResource(Slide::class, "slide");
     }
 
     /**
@@ -36,11 +33,18 @@ class SlidesController extends Controller
         return view("sliders::admin.slides.index")->with(compact('slides'));
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function create()
     {
         return view("sliders::admin.slides.create");
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $this->storeValidator($request->all());
@@ -62,6 +66,11 @@ class SlidesController extends Controller
             ->with("success", "Слайд добавлен");
     }
 
+    /**
+     * @param $data
+     * @return void
+     * @throws \Illuminate\Validation\ValidationException
+     */
     protected function storeValidator($data)
     {
         Validator::make($data, [
@@ -92,7 +101,6 @@ class SlidesController extends Controller
     public function destroy(Slide $slide)
     {
         $slide->delete();
-
         return redirect()
             ->route("admin.slides.index")
             ->with("success", "Успешно удалено");
@@ -109,17 +117,29 @@ class SlidesController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param Slide $slide
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, Slide $slide)
     {
         $this->updateValidator($request->all(), $slide);
-        $request->replace(['url' => preg_match('/<\/a>/', $request->description )?null:$request->url]);
         $slide->update($request->all());
+        $slide->url = preg_match('/<\/a>/', $request->description )?null:$request->url;
+        $slide->save();
         $slide->uploadImage($request, "slides");
         return redirect()
             ->route("admin.slides.index", ["slide" => $slide])
             ->with("success", "Слайд изменен");
     }
 
+    /**
+     * @param $data
+     * @param Slide $slide
+     * @return void
+     * @throws \Illuminate\Validation\ValidationException
+     */
     protected function updateValidator($data, Slide $slide)
     {
         $id = $slide->id;
@@ -144,6 +164,10 @@ class SlidesController extends Controller
         ])->validate();
     }
 
+    /**
+     * @param Slide $slide
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function show(Slide $slide)
     {
         return view("sliders::admin.slides.show", [
@@ -151,6 +175,10 @@ class SlidesController extends Controller
         ]);
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function priority()
     {
         $this->authorize("update", Slide::class);

@@ -4,14 +4,19 @@ namespace Cher4geo35\Sliders\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Review;
-use App\Sliders;
-use Cher4geo35\Sliders\Models\Slider;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cache;
 
 class SlidersController extends Controller
 {
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection|\Illuminate\Support\Enumerable|\Illuminate\Support\Traits\EnumeratesValues|mixed
+     */
     static public function get_reviews(){
+        $cacheKey = "reviews";
+        $cached = Cache::get($cacheKey);
+        if (!empty($cached)) {
+            return $cached;
+        }
         $reviews = Review::all()
             ->whereNotNull('moderated_at')
             ->whereNull('review_id')
@@ -23,21 +28,7 @@ class SlidersController extends Controller
                 '/(\d{4})-(\d{2})-(\d{2})\s(\d{2}):(\d{2}):(\d{2})/',
                 "$3.$2.$1", $review->registered_at);
         }
-
-//
-//        $list = [];
-//        foreach ($reviews as $review) {
-//            $list[] = [
-//                'description' => $review['description'],
-//                'from' => $review['from'],
-//                'registered_at' =>
-//                    preg_replace(
-//                        '/(\d{4})-(\d{2})-(\d{2})\s(\d{2}):(\d{2}):(\d{2})/',
-//                        "$3.$2.$1", $review['registered_at']),
-//            ];
-//        }
+        Cache::forever($cacheKey, $reviews);
         return $reviews;
     }
-
-
 }

@@ -4,7 +4,7 @@
 @section('header-title', 'Слайды')
 
 @section('admin')
-{{--    @can("viewAny", \App\Slides::class)--}}
+    @can("viewAny", \App\Slide::class)
         @include("sliders::admin.sliders.includes.pills")
         @include("sliders::admin.slides.includes.pills")
 
@@ -21,7 +21,7 @@
                                     <th>Ссылка со слайда</th>
                                     <th>Начало показа слайда</th>
                                     <th>Окончание показа слайда</th>
-                                    @canany(["view", "create", "update", "delete", "publish"], \App\Slide::class)
+                                    @canany(["view", "create", "update", "delete"], \App\Slide::class)
                                         <th>Действия</th>
                                     @endcanany
                                 </tr>
@@ -76,7 +76,5 @@
                 </div>
             </div>
         </div>
-
-
-{{--    @endcan--}}
+    @endcan
 @endsection

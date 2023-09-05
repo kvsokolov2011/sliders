@@ -22,7 +22,8 @@ class SlidersMakeCommand extends BaseConfigModelCommand
                     {--controllers : Export controllers}
                     {--scss : Export scss files}
                     {--js : Export scripts}
-                    {--vue : Export vue files}';
+                    {--vue : Export vue files}
+                    {--observers : Export observers}';
 
     /**
      * The console command description.
@@ -33,12 +34,14 @@ class SlidersMakeCommand extends BaseConfigModelCommand
     protected $vendorName = 'Cher4geo35';
     protected $packageName = "Sliders";
 
-    protected $models = ['Sliders', 'Slides'];
+    protected $models = ['Slider', 'Slide'];
 
     protected $controllers = [
         "Admin" => ["SlidersController", "SlidesController"],
         'Site' => ['SlidersController'],
     ];
+
+    protected $observers = ["ReviewObserver"];
 
     protected $scssIncludes = [
         "app" => [
@@ -62,7 +65,6 @@ class SlidersMakeCommand extends BaseConfigModelCommand
         ],
     ];
 
-
     protected $configName = "sliders";
     protected $configTitle = "Слайдеры";
     protected $configTemplate = "sliders::admin.settings";
@@ -74,8 +76,13 @@ class SlidersMakeCommand extends BaseConfigModelCommand
     protected $ruleRules = [
         [
             "title" => "Слайдеры",
-            "slug" => "sliders",
-            "policy" => "SlidersPolicy",
+            "slug" => "slider",
+            "policy" => "SliderPolicy",
+        ],
+        [
+            "title" => "Слайды",
+            "slug" => "slide",
+            "policy" => "SlidePolicy",
         ],
     ];
 
@@ -102,6 +109,10 @@ class SlidersMakeCommand extends BaseConfigModelCommand
 
         if ($this->option("vue") || $all) {
             $this->makeVueIncludes('app');
+        }
+
+        if ($this->option("observers") || $all) {
+            $this->exportObservers();
         }
 
         if ($this->option("js") || $all) {

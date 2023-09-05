@@ -1,4 +1,4 @@
-@can("viewAny", \App\Sliders::class)
+@can("viewAny", \App\Slider::class)
     <li class="nav-item">
         <a href="{{ route('admin.sliders.index') }}"
            class="nav-link{{ strstr($currentRoute, 'admin.sliders') !== FALSE ? ' active' : '' }}">

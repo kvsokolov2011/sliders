@@ -24,8 +24,9 @@
     }
 
     &__image{
-        @media (min-width: 1920px) {
-            width: 100%;
+        min-height: 100%;
+        @media (min-width: 1921px) {
+            min-width: 100%;
             object-fit: contain;
         }
     }

@@ -5,8 +5,7 @@ namespace Cher4geo35\Sliders\Policies;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use PortedCheese\BaseSettings\Traits\InitPolicy;
-
-class SlidersPolicy
+class SliderPolicy
 {
     use HandlesAuthorization;
     use InitPolicy {
@@ -21,7 +20,7 @@ class SlidersPolicy
 
     public function __construct()
     {
-        $this->__ipoConstruct("SlidersPolicy");
+        $this->__ipoConstruct("SliderPolicy");
     }
 
     /**

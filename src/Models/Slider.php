@@ -2,10 +2,9 @@
 
 namespace Cher4geo35\Sliders\Models;
 
-use Cher4geo35\Sliders\Models\Slide;
-use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class Slider extends Model
 {
@@ -25,8 +24,16 @@ class Slider extends Model
         return $this->hasMany(Slide::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|mixed
+     */
     public function get_slides()
     {
+        $cacheKey = "slides:{$this->id}";
+        $cached = Cache::get($cacheKey);
+        if (!empty($cached)) {
+            return $cached;
+        }
         $collection = Slide::query()
             ->where(function($query) {
                 $query->where("unpublished_at", ">", now())
@@ -38,21 +45,7 @@ class Slider extends Model
             })
             ->orderBy("priority")
             ->get();
+        Cache::forever($cacheKey, $collection);
         return $collection;
     }
-
-
-
-//    static function deleteSlider($slug){
-//        try{
-//            $slider = Slider::query()->where('slug', $slug)->firstOrFail();
-//            foreach ($slider->slides as $slide){
-//                $slide->delete();
-//            }
-//            $slider->delete();
-//            return true;
-//        }catch ( Exception $e){
-//            return false;
-//        }
-//    }
 }

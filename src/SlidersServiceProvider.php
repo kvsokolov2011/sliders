@@ -2,6 +2,7 @@
 
 namespace Cher4geo35\Sliders;
 
+use App\Review;
 use Cher4geo35\Sliders\Filters\CertificatesSlider;
 use Cher4geo35\Sliders\Filters\ImageXs;
 use Cher4geo35\Sliders\Filters\ImageSm;
@@ -14,6 +15,7 @@ use Cher4geo35\Sliders\Filters\BasicMd;
 use Cher4geo35\Sliders\Filters\BasicLg;
 use Cher4geo35\Sliders\Filters\BasicXl;
 use Cher4geo35\Sliders\Console\Commands\SlidersMakeCommand;
+use Cher4geo35\Sliders\Observers\ReviewObserver;
 use Illuminate\Support\ServiceProvider;
 
 class SlidersServiceProvider extends ServiceProvider
@@ -63,6 +65,10 @@ class SlidersServiceProvider extends ServiceProvider
         $imagecache['basic-xl'] = BasicXl::class;
 
         app()->config['imagecache.templates'] = $imagecache;
+
+        if (class_exists(ReviewObserver::class) && class_exists(Review::class)) {
+            Review::observe(ReviewObserver::class);
+        }
 
     }
 

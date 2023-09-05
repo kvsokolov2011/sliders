@@ -3,9 +3,9 @@
 namespace Cher4geo35\Sliders\Models;
 
 use App\Image;
-use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use PortedCheese\BaseSettings\Traits\ShouldGallery;
 use PortedCheese\BaseSettings\Traits\ShouldImage;
 use PortedCheese\BaseSettings\Traits\ShouldSlug;
@@ -27,18 +27,33 @@ class Slide extends Model
         "unpublished_at",
     ];
 
+    /**
+     * @return void
+     */
+    protected static function booting()
+    {
+        parent::booting();
+
+        static::updated(function (Slide $model) {
+            $model->forgetCache('slides', $model->slider_id);
+        });
+    }
+
+    /**
+     * @param $first_key
+     * @param $second_key
+     * @return void
+     */
+    public function forgetCache($first_key, $second_key)
+    {
+        Cache::forget("{$first_key}:{$second_key}");
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function image()
     {
         return $this->belongsTo(Image::class);
     }
-
-//    static function deleteSlide($slug){
-//        try{
-//            $slide = Slide::query()->where('slug', $slug)->firstOrFail();
-//            $slide->delete();
-//            return true;
-//        }catch ( Exception $e){
-//            return false;
-//        }
-//    }
 }

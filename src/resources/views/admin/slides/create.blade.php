@@ -4,7 +4,7 @@
 @section('header-title', 'Слайды')
 
 @section('admin')
-{{--    @can("viewAny", \App\Sliders::class)--}}
+    @can("viewAny", \App\Slide::class)
         @include("sliders::admin.sliders.includes.pills")
         @include("sliders::admin.slides.includes.pills")
         <div class="col-12">
@@ -139,5 +139,5 @@
                 </div>
             </div>
         </div>
-{{--    @endcan--}}
+    @endcan
 @endsection

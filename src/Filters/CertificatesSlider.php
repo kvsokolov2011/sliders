@@ -7,7 +7,6 @@ use Intervention\Image\Filters\FilterInterface;
 use Intervention\Image\Image as File;
 
 class CertificatesSlider implements FilterInterface {
-
     public function applyFilter(File $image)
     {
         $image->orientate();

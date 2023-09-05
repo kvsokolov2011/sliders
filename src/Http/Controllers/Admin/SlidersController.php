@@ -3,11 +3,7 @@
 namespace Cher4geo35\Sliders\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Image;
-use App\Sliders;
-use Cher4geo35\Sliders\Models\Slide;
 use Cher4geo35\Sliders\Models\Slider;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -17,7 +13,7 @@ class SlidersController extends Controller
     public function __construct()
     {
         parent::__construct();
-        $this->authorizeResource(Sliders::class, "sliders");
+        $this->authorizeResource(Slider::class, "slider");
     }
 
     /**
@@ -34,11 +30,18 @@ class SlidersController extends Controller
         return view("sliders::admin.sliders.index")->with(compact('sliders'));
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function create()
     {
         return view("sliders::admin.sliders.create");
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $this->storeValidator($request->all());
@@ -52,6 +55,11 @@ class SlidersController extends Controller
             ->with("success", "Слайдер добавлен");
     }
 
+    /**
+     * @param $data
+     * @return void
+     * @throws \Illuminate\Validation\ValidationException
+     */
     protected function storeValidator($data)
     {
         Validator::make($data, [
@@ -72,7 +80,6 @@ class SlidersController extends Controller
     public function destroy(Slider $slider)
     {
         $slider->delete();
-
         return redirect()
             ->route("admin.sliders.index")
             ->with("success", "Успешно удалено");
@@ -89,6 +96,11 @@ class SlidersController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param Slider $slider
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, Slider $slider)
     {
         $this->updateValidator($request->all(), $slider);
@@ -98,6 +110,12 @@ class SlidersController extends Controller
             ->with("success", "Слайдер изменен");
     }
 
+    /**
+     * @param $data
+     * @param Slider $slider
+     * @return void
+     * @throws \Illuminate\Validation\ValidationException
+     */
     protected function updateValidator($data, Slider $slider)
     {
         $id = $slider->id;

@@ -4,7 +4,7 @@
 @section('header-title', 'Слайдеры')
 
 @section('admin')
-    @can("viewAny", \App\Sliders::class)
+    @can("viewAny", \App\Slider::class)
         @include("sliders::admin.sliders.includes.pills")
         <div class="col-12">
             <div class="card">

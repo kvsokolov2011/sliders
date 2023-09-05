@@ -4,7 +4,7 @@
 @section('header-title', 'Слайдеры')
 
 @section('admin')
-    @can("viewAny", \App\Sliders::class)
+    @can("viewAny", \App\Slider::class)
         @include("sliders::admin.sliders.includes.pills")
 
         <div class="col-12">
@@ -36,7 +36,7 @@
                                                             <i class="far fa-edit"></i>
                                                         </a>
                                                     @endcan
-                                                    @canany(["view", "create", "update", "publish"], \App\Slider::class)
+                                                    @canany(["view", "create", "update"], \App\Slider::class)
                                                         <form action="{{ route("admin.slides.index") }}" method="get" enctype="multipart/form-data">
                                                             @csrf
                                                             <input hidden name="slug" value="{{ $slider->slug }}">
@@ -74,7 +74,5 @@
                 </div>
             </div>
         </div>
-
-
     @endcan
 @endsection
