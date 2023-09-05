@@ -19,26 +19,29 @@
                              {--vue : Export vue}
                              {--observers : Export observers}
         
-    npm install "slick-carousel": "^1.8.1",
+    npm install slick-carousel@^1.8.1
 
     Добавить в webpack.min.js:
     .copy('node_modules/slick-carousel/slick/fonts', 'public/slick-carousel/fonts')
     .copy('node_modules/slick-carousel/slick/ajax-loader.gif', 'public/slick-carousel')
 
 ### Слайдеры
+
  - slider-cetrificates (Передаем в него $slider)
-   @include('sliders::site.sliders.slider-certificates', [ 'slider' => $slider ])
+      @include('sliders::site.sliders.slider-certificates', [ 'slider' => $slider ])
  - slider-images (Передаем в него $slider)
-   @include('sliders::site.sliders.slider-images', [ 'slider' => $slider ])
-- slider-basic (Передаем в него $slider)
-  @include('sliders::site.sliders.slider-basic', [ 'slider' => $slider ])
-
-
+      @include('sliders::site.sliders.slider-images', [ 'slider' => $slider ])
+ - slider-basic (Передаем в него $slider)
+      @include('sliders::site.sliders.slider-basic', [ 'slider' => $slider ])
+ - slider-reviews (необходим пакет portedcheese/site-reviews)
+      @include('sliders::site.sliders.slider-reviews')
 
 ### Components
-progress-bar:
-    <sliders>
-    </sliders>
+add-review:
+    <add-review form-action="{{ route('site.reviews.store') }}"
+                user-auth="{{ Auth::check() ? Auth::user()->id : false }}">
+    </add-review>
+(Добавляем отзыв, кнопка под слайдером)
 
 ### Versions
 

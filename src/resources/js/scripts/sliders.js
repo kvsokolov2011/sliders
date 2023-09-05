@@ -83,6 +83,7 @@ require('slick-carousel');
         });
 
         $('.slider-basic').slick({
+            dots: true,
         });
 
         $('.slider-reviews').slick({

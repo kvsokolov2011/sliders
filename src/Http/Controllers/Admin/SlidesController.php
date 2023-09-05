@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Cher4geo35\Sliders\Models\Slide;
 use Cher4geo35\Sliders\Models\Slider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -194,6 +195,7 @@ class SlidesController extends Controller
                 "url" => route("admin.slides.show", ["slide" => $item]),
             ];
         }
+        Cache::forget("slides:{$slider->id}");
         return view("sliders::admin.slides.priority", [
             "priority" => $priority
         ]);

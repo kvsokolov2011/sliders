@@ -1,5 +1,21 @@
 .slider-basic{
 
+    & .slick-dots{
+        bottom: 50%;
+        right: -1rem;
+        transform: rotate(90deg);
+        width: unset;
+
+        @media (min-width: 480px) {
+            right: 0;
+        }
+
+        & li button::before{
+            color: $light;
+            font-size: 1rem;
+        }
+    }
+
     &__slide{
         border: none!important;
         border-radius: 0;

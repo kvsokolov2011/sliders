@@ -43,7 +43,7 @@ class Slider extends Model
                 $query->where("unpublished_at", NULL)
                     ->where("published_at", "<", now())->where('slider_id', $this->id );
             })
-            ->orderBy("priority")
+            ->orderBy('priority')
             ->get();
         Cache::forever($cacheKey, $collection);
         return $collection;
