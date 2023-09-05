@@ -45,9 +45,10 @@
 
                         <div class="form-group">
                             <label for="description">Описание</label>
-                            <textarea class="form-control @error("description") is-invalid @enderror" name="description" id="description" rows="1">
-                            {{ old('description', $slider->description) }}
-                        </textarea>
+                            <textarea class="form-control @error("description") is-invalid @enderror"
+                                      name="description"
+                                      id="description"
+                                      rows="1">{{ old('description', $slider->description) }}</textarea>
                             @error("description")
                             <div class="invalid-feedback" role="alert">
                                 {{ $message }}
