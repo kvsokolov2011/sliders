@@ -84,6 +84,14 @@ require('slick-carousel');
 
         $('.slider-basic').slick({
             dots: true,
+            responsive: [
+                {
+                    breakpoint: 576,
+                    settings: {
+                        dots:false,
+                    }
+                },
+            ]
         });
 
         $('.slider-reviews').slick({
