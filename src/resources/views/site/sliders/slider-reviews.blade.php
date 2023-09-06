@@ -1,4 +1,5 @@
 @php($reviews = new \Cher4geo35\Sliders\Http\Controllers\Site\SlidersController())
+@if($reviews)
     @if ($reviews->get_reviews() && count($reviews->get_reviews()))
         <div class="position-relative">
             <div class="slider-reviews__title text-center">
@@ -24,3 +25,4 @@
             </div>
         </div>
     </div>
+@endif

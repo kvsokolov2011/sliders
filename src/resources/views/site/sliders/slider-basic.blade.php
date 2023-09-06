@@ -1,4 +1,4 @@
-@if($slider->get_slides() && count($slider->get_slides()))
+@if($slider && $slider->get_slides() && count($slider->get_slides()))
     <div class="slider-basic">
         @foreach ($slider->get_slides() as $slide)
             <div class="card overflow-hidden slider-basic__slide">
