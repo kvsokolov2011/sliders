@@ -47,5 +47,10 @@
         }
     }
 
-    @include controls-edges( 3rem, 90%, unset, 5rem, 1rem, '\f30b', '\f30a');
+    @include controls-edges( 2.5rem, 90%, unset, 5rem, 1.5rem, '\f054', '\f053');
+
+    & .slick-slide div{
+        height: 34.375rem;
+    }
 }
+

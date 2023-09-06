@@ -5,8 +5,8 @@ require('slick-carousel');
 
         $('.slider-certificates').slick({
             centerMode: true,
-            centerPadding: '60px',
-            slidesToShow: 3,
+            centerPadding: '43px',
+            slidesToShow: 4,
             responsive: [
                 {
                     breakpoint: 1200,
@@ -22,7 +22,7 @@ require('slick-carousel');
                     settings: {
                         arrows: true,
                         centerMode: true,
-                        centerPadding: '40px',
+                        centerPadding: '65px',
                         slidesToShow: 2
                     }
                 },
@@ -31,8 +31,8 @@ require('slick-carousel');
                     settings: {
                         arrows: true,
                         centerMode: true,
-                        centerPadding: '40px',
-                        slidesToShow: 1
+                        centerPadding: '23px',
+                        slidesToShow: 2
                     }
                 },
                 {
@@ -40,7 +40,25 @@ require('slick-carousel');
                     settings: {
                         arrows: false,
                         centerMode: true,
-                        centerPadding: '40px',
+                        centerPadding: '30px',
+                        slidesToShow: 2
+                    }
+                },
+                {
+                    breakpoint: 450,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '60px',
+                        slidesToShow: 1
+                    }
+                },
+                {
+                    breakpoint: 400,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '45px',
                         slidesToShow: 1
                     }
                 }

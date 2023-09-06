@@ -25,7 +25,7 @@
                     @can("create", \App\Slide::class)
                         <li class="nav-item">
                             <a href="{{ route("admin.slides.create") }}"
-                            class="nav-link{{ $currentRoute === "admin.slides.create, " ? " active" : "" }}">
+                            class="nav-link {{ $currentRoute === "admin.slides.create" ? " active" : "" }}">
                                 Добавить слайд
                             </a>
                         </li>

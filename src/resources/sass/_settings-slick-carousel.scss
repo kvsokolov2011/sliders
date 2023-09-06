@@ -24,6 +24,7 @@ $slick-font-path: "../slick-carousel/fonts/";
             content: $arrow_right;
             font-family: 'Font Awesome 5 Free';
             font-weight: 900;
+            margin-right: 0.25rem;
         }
     }
     & .slick-next{
@@ -32,7 +33,12 @@ $slick-font-path: "../slick-carousel/fonts/";
             content: $arrow_left;
             font-family: 'Font Awesome 5 Free';
             font-weight: 900;
+            margin-left: 0.25rem;
         }
     }
+}
+
+.slick-slider, .slick-dotted{
+    margin-bottom: 0!important;
 }
 
