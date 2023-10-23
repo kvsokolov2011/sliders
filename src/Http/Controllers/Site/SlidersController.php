@@ -17,18 +17,22 @@ class SlidersController extends Controller
         if (!empty($cached)) {
             return $cached;
         }
-        $reviews = Review::all()
-            ->whereNotNull('moderated_at')
-            ->whereNull('review_id')
-            ->sortByDesc('registered_at')
-            ->take(base_config()->get('reviews', "pager"));
+        try{
+            $reviews = Review::all()
+                ->whereNotNull('moderated_at')
+                ->whereNull('review_id')
+                ->sortByDesc('registered_at')
+                ->take(base_config()->get('reviews', "pager"));
 
-        foreach ($reviews as $review){
-            $review->registered_at = preg_replace(
-                '/(\d{4})-(\d{2})-(\d{2})\s(\d{2}):(\d{2}):(\d{2})/',
-                "$3.$2.$1", $review->registered_at);
+            foreach ($reviews as $review){
+                $review->registered_at = preg_replace(
+                    '/(\d{4})-(\d{2})-(\d{2})\s(\d{2}):(\d{2}):(\d{2})/',
+                    "$3.$2.$1", $review->registered_at);
+            }
+            Cache::forever($cacheKey, $reviews);
+            return $reviews;
+        } catch (\Exception $e){
+            return false;
         }
-        Cache::forever($cacheKey, $reviews);
-        return $reviews;
     }
 }
