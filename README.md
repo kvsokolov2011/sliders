@@ -35,6 +35,7 @@
       @include('sliders::site.sliders.slider-basic', [ 'slider' => $slider ])
  - slider-reviews (необходим пакет portedcheese/site-reviews)
       @include('sliders::site.sliders.slider-reviews')
+      (Для слайдера отзывов необходимо установить пакет portedcheese/site-reviews)
 
 ### Components
 add-review:
