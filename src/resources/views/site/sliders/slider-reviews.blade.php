@@ -14,7 +14,9 @@
             @endforeach
         </div>
     </div>
+@endif
 
+@if(\Schema::hasTable('reviews'))
     <div class="container">
         <div class="row">
             <div class="mt-3 ml-0 col-12">

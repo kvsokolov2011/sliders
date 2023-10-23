@@ -3,7 +3,6 @@
 namespace Cher4geo35\Sliders\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
-use App\Review;
 use Illuminate\Support\Facades\Cache;
 
 class SlidersController extends Controller
@@ -18,7 +17,8 @@ class SlidersController extends Controller
             return $cached;
         }
         try{
-            $reviews = Review::all()
+            if(!\Schema::hasTable('reviews')) return false;
+            $reviews = \App\Review::all()
                 ->whereNotNull('moderated_at')
                 ->whereNull('review_id')
                 ->sortByDesc('registered_at')
