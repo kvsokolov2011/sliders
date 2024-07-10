@@ -16,8 +16,6 @@
         }
     },
     "require": {
-        "php": "^8.0.2",
-        "laravel/framework": "^9.0",
         "portedcheese/base-settings": "^4.0"
     },
     "require-dev": {
