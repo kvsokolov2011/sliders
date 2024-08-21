@@ -9,6 +9,7 @@
                     "lightbox" => "{{$slider->slug}}",
                     "imgClass" => "slider-images__slide",
                     "grid" => [
+                            "image-xxl" => 1400,
                             "image-xl" => 1200,
                             "image-lg" => 992,
                             "image-md" => 768,

@@ -22,7 +22,7 @@ $slick-font-path: "../slick-carousel/fonts/";
         right: $right_prev;
         &::before {
             content: $arrow_right;
-            font-family: 'Font Awesome 5 Free';
+            font-family: 'Font Awesome 6 Free';
             font-weight: 900;
             margin-right: 0.25rem;
         }
@@ -31,7 +31,7 @@ $slick-font-path: "../slick-carousel/fonts/";
         right: $right_next;
         &::before {
             content: $arrow_left;
-            font-family: 'Font Awesome 5 Free';
+            font-family: 'Font Awesome 6 Free';
             font-weight: 900;
             margin-left: 0.25rem;
         }

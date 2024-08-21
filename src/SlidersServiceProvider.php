@@ -15,6 +15,7 @@ use Cher4geo35\Sliders\Filters\BasicMd;
 use Cher4geo35\Sliders\Filters\BasicLg;
 use Cher4geo35\Sliders\Filters\BasicXl;
 use Cher4geo35\Sliders\Console\Commands\SlidersMakeCommand;
+use Cher4geo35\Sliders\Filters\ImageXxl;
 use Cher4geo35\Sliders\Observers\ReviewObserver;
 use Illuminate\Support\ServiceProvider;
 
@@ -57,6 +58,7 @@ class SlidersServiceProvider extends ServiceProvider
         $imagecache['image-md'] = ImageMd::class;
         $imagecache['image-lg'] = ImageLg::class;
         $imagecache['image-xl'] = ImageXl::class;
+        $imagecache['image-xxl'] = ImageXxl::class;
 
         $imagecache['basic-xs'] = BasicXs::class;
         $imagecache['basic-sm'] = BasicSm::class;

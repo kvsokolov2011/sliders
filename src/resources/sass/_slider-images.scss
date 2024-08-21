@@ -4,6 +4,8 @@
         height: 18.75rem;
         @include media-breakpoint-up(lg){
             height: 12.5rem;
+        }@include media-breakpoint-up(xxl){
+            height: 13.5rem;
         }
     }
 
