@@ -1,16 +1,14 @@
 <template>
     <div>
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reviewModalWindow">Добавить отзыв</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reviewModalWindow">Добавить отзыв</button>
         <!--Modal window-->
         <div class="modal fade" tabindex="-1" role="dialog" id="reviewModalWindow" aria-labelledby="exampleModalLabel">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Оставить отзыв</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form id="createReviewForm">
@@ -26,7 +24,7 @@
                                    v-if="this.userAuth"
                                    :value="this.userAuth">
                             <!--Пользователь неизвестен-->
-                            <div class="form-group mt-3" v-if="! this.userAuth">
+                            <div class="my-3" v-if="! this.userAuth">
                                 <label for="from">Ваше имя:</label>
                                 <input type="text"
                                        id="from"
@@ -36,7 +34,7 @@
                                        class="form-control mb-3">
                             </div>
                             <!--Совственно сообщение отзыва-->
-                            <div class="form-group mt-3">
+                            <div class="my-3">
                                 <label for="description">Ваш отзыв:</label>
                                 <textarea type="text"
                                           v-model="description"
