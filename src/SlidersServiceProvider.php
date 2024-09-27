@@ -4,6 +4,7 @@ namespace Cher4geo35\Sliders;
 
 use App\Review;
 use Cher4geo35\Sliders\Filters\CertificatesSlider;
+use Cher4geo35\Sliders\Filters\CertificatesSliderXxl;
 use Cher4geo35\Sliders\Filters\ImageXs;
 use Cher4geo35\Sliders\Filters\ImageSm;
 use Cher4geo35\Sliders\Filters\ImageMd;
@@ -52,6 +53,7 @@ class SlidersServiceProvider extends ServiceProvider
 
         $imagecache = app()->config['imagecache.templates'];
         $imagecache['certificates-slider'] = CertificatesSlider::class;
+        $imagecache['certificates-slider-xxl'] = CertificatesSliderXxl::class;
 
         $imagecache['image-xs'] = ImageXs::class;
         $imagecache['image-sm'] = ImageSm::class;

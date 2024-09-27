@@ -8,7 +8,7 @@
                     "template" => "certificates-slider",
                     "lightbox" => "{{$slider->slug}}",
                     "imgClass" => "border-0",
-                    "grid" => [],
+                    "grid" => ['certificates-slider-xxl' => 1400],
                     ])
                 </div>
             </div>
