@@ -100,7 +100,7 @@
 
                         <div class="form-group">
                             <label for="ckDescription">Описание</label>
-                            <textarea class="form-control @error("description") is-invalid @enderror" name="description" id="ckDescription" rows="3">
+                            <textarea class="tiny form-control @error("description") is-invalid @enderror" name="description" id="ckDescription" rows="3">
                                 {{ old('description', $slide->description) }}
                             </textarea>
                             @error("description")
